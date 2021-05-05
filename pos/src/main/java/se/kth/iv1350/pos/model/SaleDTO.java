@@ -9,7 +9,7 @@ public class SaleDTO {
     private Item[] nameOfItems;
     private double priceOfItems;
     
-    public SaleInformation(java.time.LocalTime time,
+    public SaleDTO(java.time.LocalTime time,
             String nameOfStore,
             double totalDiscount,
             double totalVAT,
@@ -25,30 +25,30 @@ public class SaleDTO {
     }
     
     public java.time.LocalTime getTime() {
-        
+        return this.time;
     }
     
     public String getNameOfStore() {
-        
+        return this.nameOfStore;
     }
     
     public double getTotalDiscount() {
-        
+        return this.totalDiscount;
     }
     
     public double getTotalVAT() {
-        
+        return this.totalVAT;
     }
     
     public double getTotalPrice() {
-        
+        return this.totalPrice;
     }
     
     public Item[] getNameOfItems() {
-        
+        return this.nameOfItems;
     }
     
-    public double getPriceItems() {
-        
+    public double getPriceOfItems() {
+        return this.priceOfItems;
     }
 }

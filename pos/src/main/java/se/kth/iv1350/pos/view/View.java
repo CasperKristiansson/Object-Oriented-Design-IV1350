@@ -12,5 +12,15 @@ public class View {
     public View(Controller contr) {
         this.contr = contr;
     }
+    
+    public void runFakeExecution() {
+    	//Starta en ny försäljning
+    	contr.startSale();
+    	//Gör en specifik loop
+    	contr.enterItem(1, 2);
+    	//Avsluta försäljningen
+    	contr.endSale();
+    	
+    }
 }
 
