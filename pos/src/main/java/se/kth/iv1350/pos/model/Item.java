@@ -2,25 +2,26 @@ package se.kth.iv1350.pos.model;
 
 public class Item {
     private ItemDTO itemDTO;
-    private int quantity;
+    private int storeQuantity;
+    
     private int itemIdentifier; 
     
     public Item(int itemIdentifier, ItemDTO itemDTO, int quantity) {
         this.itemIdentifier = itemIdentifier;
         this.itemDTO = itemDTO;
-        this.quantity = quantity;
+        this.storeQuantity = quantity;
     }
     
     public int getItemIdentifier() {
     	return this.itemIdentifier;
     }
     
-    public int getQuantity() {
-    	return this.quantity;
+    public int getStoreQuantity() {
+    	return this.storeQuantity;
     }
 
     public void updateQuantity(int bought_quantity){
-    	this.quantity -= bought_quantity;
+    	this.storeQuantity -= bought_quantity;
     }
     
     public ItemDTO getItemDTO() {

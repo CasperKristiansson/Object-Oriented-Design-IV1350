@@ -17,10 +17,12 @@ public class View {
     	//Starta en ny försäljning
     	contr.startSale();
     	//Gör en specifik loop
-    	contr.enterItem(1, 2);
+    	contr.enterItem(2, 1);
+    	contr.enterItem(2, 1);
     	//Avsluta försäljningen
     	contr.endSale();
-    	
+    	contr.pay(100,"Cash");
+    	contr.print();
     }
 }
 

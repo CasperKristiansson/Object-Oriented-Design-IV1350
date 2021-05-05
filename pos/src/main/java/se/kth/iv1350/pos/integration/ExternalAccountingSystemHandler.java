@@ -9,10 +9,14 @@ public class ExternalAccountingSystemHandler {
     private int storeBalance;
     
     public ExternalAccountingSystemHandler() {
-        this.storeBalance = 100; //TEST
+        this.storeBalance = 100; //Starting value
     }
     
-    public void update(Sale sale) {
-        
+    public void update(Sale sale, double amount) {
+    	this.storeBalance += amount;
+    }
+    
+    public int getStoreBalance() {
+    	return this.storeBalance;
     }
 }

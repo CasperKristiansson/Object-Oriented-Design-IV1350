@@ -7,21 +7,18 @@ public class SaleDTO {
     private double totalVAT;
     private double totalPrice;
     private Item[] nameOfItems;
-    private double priceOfItems;
     
     public SaleDTO(java.time.LocalTime time,
             String nameOfStore,
             double totalDiscount,
             double totalVAT,
             double totalPrice,
-            Item[] nameOfItems,
-            double priceOfItems) {
+            Item[] nameOfItems) {
         this.nameOfStore = nameOfStore;
         this.totalDiscount = totalDiscount;
         this.totalVAT = totalVAT;
         this.totalPrice = totalPrice;
         this.nameOfItems = nameOfItems;
-        this.priceOfItems = priceOfItems;
     }
     
     public java.time.LocalTime getTime() {
@@ -48,7 +45,11 @@ public class SaleDTO {
         return this.nameOfItems;
     }
     
-    public double getPriceOfItems() {
-        return this.priceOfItems;
+    public void updateTotalPrice(double amount, int quantity, double totalVAT) {
+    	this.totalPrice += (amount * quantity) + totalVAT;
+    }
+    
+    public void updateTotalVAT(double amount, int quantity) {
+    	this.totalVAT += (amount * quantity);
     }
 }

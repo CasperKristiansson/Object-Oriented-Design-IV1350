@@ -6,7 +6,6 @@ import se.kth.iv1350.pos.integration.*;
 
 public class Controller {
     private Sale sale;
-    private SaleDTO saleDTO;
     private Printer printer; 
     private ExternalAccountingSystemHandler eas;
     private ExternalInventorySystemHandler eis;
@@ -26,14 +25,35 @@ public class Controller {
     
     public SaleDTO enterItem(int itemIdentifier, int quantity) {
     	Item item = eis.search(itemIdentifier);
-    	sale.addItem(item , quantity);
+    	sale.addItem(item, quantity);
     	return this.sale.getSaleInformation();
     }
     
     public SaleDTO endSale() {
     	System.out.println("Försäljning avslutad.");
     	eis.update(this.sale);
-    	System.out.println(eis.test());
-    	return this.saleDTO;
+    	return this.sale.getSaleInformation();
+    }
+    
+    public double pay(double amount, String paymentMethod) {
+    	double change = amount - sale.getSaleInformation().getTotalPrice();
+    	
+    	if(change < 0) {
+    		System.out.println("Not enough");
+    	}else if(change == 0){
+    		System.out.println("No change");
+    		this.eas.update(this.sale, amount);
+    	}else {
+    		System.out.println("Change: " + change);
+    		this.eas.update(this.sale, (amount - change));
+    	}
+    	
+    	System.out.println("Store balance: " + this.eas.getStoreBalance());
+    	System.out.println("Total VAT: " + sale.getSaleInformation().getTotalVAT());
+    	return 0;
+    }
+    
+    public void print() {
+    	printer.print(this.sale.getReceipt(sale));
     }
 }
