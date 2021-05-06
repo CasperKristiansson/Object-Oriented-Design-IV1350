@@ -25,7 +25,6 @@ public class Receipt {
     public Receipt(SaleDTO saleInformation) {
         this.saleInformation = saleInformation;
         this.nameOfStore = saleInformation.getNameOfStore();
-        this.totalDiscount = saleInformation.getTotalDiscount();
         this.totalVAT = saleInformation.getTotalVAT();
         this.totalPrice = saleInformation.getTotalPrice();
         this.nameOfItems = saleInformation.getItems();
