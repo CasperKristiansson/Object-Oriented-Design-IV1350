@@ -17,7 +17,7 @@ public class View {
     	//Starta en ny försäljning
     	contr.startSale();
     	//Gör en specifik loop
-    	contr.enterItem(2, 1);
+    	contr.enterItem(2, 102);
     	contr.enterItem(2, 1);
     	//Avsluta försäljningen
     	contr.endSale();

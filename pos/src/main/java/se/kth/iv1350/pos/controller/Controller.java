@@ -25,7 +25,13 @@ public class Controller {
     
     public SaleDTO enterItem(int itemIdentifier, int quantity) {
     	Item item = eis.search(itemIdentifier);
-    	sale.addItem(item, quantity);
+    	
+    	if(item.getStoreQuantity() >= quantity) {
+    		sale.addItem(item, quantity);
+    	}else {
+    		System.out.println("Out of stock!");
+    	}
+    	
     	return this.sale.getSaleInformation();
     }
     

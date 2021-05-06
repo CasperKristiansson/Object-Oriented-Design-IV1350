@@ -26,7 +26,7 @@ public class ExternalInventorySystemHandler {
 	public Item search(int itemIdentifier) {
 		for (Item item : storeItems) {
 			if (item.getItemIdentifier() == itemIdentifier) {
-				return item;
+					return item;
 			}
 		}
 		return null; // Varan finns inte
