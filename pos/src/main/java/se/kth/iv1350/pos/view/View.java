@@ -1,6 +1,9 @@
 package se.kth.iv1350.pos.view;
 
 import se.kth.iv1350.pos.controller.Controller;
+/**
+ * The View of the program which runs a runFakeExecution task.
+ */
 public class View {
     private Controller contr;
     
@@ -13,13 +16,15 @@ public class View {
         this.contr = contr;
     }
     
+    /**
+     * Performs a fake sale by calling all system operations in the controller.
+     */
     public void runFakeExecution() {
-    	//Starta en ny försäljning
     	contr.startSale();
-    	//Gör en specifik loop
+    	
     	contr.enterItem(8, 102);
     	contr.enterItem(2, 1);
-    	//Avsluta försäljningen
+    	
     	contr.endSale();
     	contr.pay(100,"Cash");
     	contr.print();

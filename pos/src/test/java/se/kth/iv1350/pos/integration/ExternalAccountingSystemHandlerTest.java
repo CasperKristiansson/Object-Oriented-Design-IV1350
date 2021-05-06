@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.iv1350.pos.integration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -13,10 +8,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import se.kth.iv1350.pos.model.Sale;
 
-/**
- *
- * @author myfre
- */
 public class ExternalAccountingSystemHandlerTest {
     private ExternalAccountingSystemHandler eas;
     public ExternalAccountingSystemHandlerTest() {
@@ -39,9 +30,6 @@ public class ExternalAccountingSystemHandlerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of update method, of class ExternalAccountingSystemHandler.
-     */
     @Test
     public void testUpdate() {
         System.out.println("update");
