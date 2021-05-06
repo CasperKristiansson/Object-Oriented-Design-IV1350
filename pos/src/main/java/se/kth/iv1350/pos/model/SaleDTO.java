@@ -1,4 +1,5 @@
 package se.kth.iv1350.pos.model;
+import java.util.*;
 
 public class SaleDTO {
     private java.time.LocalTime time;
@@ -6,19 +7,19 @@ public class SaleDTO {
     private double totalDiscount;
     private double totalVAT;
     private double totalPrice;
-    private Item[] nameOfItems;
+    private List<Item> nameOfItems;
     
     public SaleDTO(java.time.LocalTime time,
             String nameOfStore,
             double totalDiscount,
             double totalVAT,
             double totalPrice,
-            Item[] nameOfItems) {
+            List <Item> nameOfItems) {
         this.nameOfStore = nameOfStore;
         this.totalDiscount = totalDiscount;
         this.totalVAT = totalVAT;
         this.totalPrice = totalPrice;
-        this.nameOfItems = nameOfItems;
+        this.nameOfItems = new ArrayList<>();
     }
     
     public java.time.LocalTime getTime() {
@@ -41,7 +42,7 @@ public class SaleDTO {
         return this.totalPrice;
     }
     
-    public Item[] getNameOfItems() {
+    public List<Item> getNameOfItems() {
         return this.nameOfItems;
     }
     
@@ -51,5 +52,9 @@ public class SaleDTO {
     
     public void updateTotalVAT(double amount, int quantity) {
     	this.totalVAT += (amount * quantity);
+    }
+    
+    public void updateNameOfItems(Item item) {
+        nameOfItems.add(item);
     }
 }

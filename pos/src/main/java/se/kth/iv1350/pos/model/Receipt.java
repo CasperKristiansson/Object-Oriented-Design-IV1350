@@ -1,5 +1,6 @@
 package se.kth.iv1350.pos.model;
 
+import java.util.*;
 import se.kth.iv1350.pos.model.*;
 import se.kth.iv1350.pos.view.View;
 import se.kth.iv1350.pos.controller.Controller;
@@ -12,7 +13,7 @@ public class Receipt {
     private double totalDiscount;
     private double totalVAT;
     private double totalPrice;
-    private Item[] nameOfItems;
+    private List<Item> nameOfItems;
     
     public Receipt(SaleDTO saleInformation) {
         this.saleInformation = saleInformation;
@@ -43,8 +44,7 @@ public class Receipt {
         return this.totalPrice;
     }
     
-    public Item[] getNameOfItems() {
+    public List<Item> getNameOfItems() {
         return this.nameOfItems;
     }
-    
 }
