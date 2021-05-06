@@ -51,7 +51,6 @@ public class ExternalInventorySystemHandler {
 		List<Item> items = sale.getItems();
 		List<Integer> itemsQuantity = sale.getCustomerItemsQuantity();
 
-		// Loop som går igenom och matchar kundens önskade föremål med butikens utbud
 		for (Item item : items) {
 			for (Item item2 : storeItems) {
 				if (item == item2) {
