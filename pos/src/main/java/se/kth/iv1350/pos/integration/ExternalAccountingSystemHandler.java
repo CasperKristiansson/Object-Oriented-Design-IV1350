@@ -12,7 +12,7 @@ public class ExternalAccountingSystemHandler {
         this.storeBalance = 100; //Starting value
     }
     
-    public void update(Sale sale, double amount) {
+    public void update(double amount) {
     	this.storeBalance += amount;
     }
     

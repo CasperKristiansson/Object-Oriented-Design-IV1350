@@ -25,13 +25,15 @@ public class Controller {
     
     public SaleDTO enterItem(int itemIdentifier, int quantity) {
     	Item item = eis.search(itemIdentifier);
-    	
+    	if(item == null){
+            return null;
+        }
     	if(item.getStoreQuantity() >= quantity) {
     		sale.addItem(item, quantity);
     	}else {
     		System.out.println("Out of stock!");
     	}
-    	
+        
     	return this.sale.getSaleInformation();
     }
     
@@ -48,18 +50,23 @@ public class Controller {
     		System.out.println("Not enough");
     	}else if(change == 0){
     		System.out.println("No change");
-    		this.eas.update(this.sale, amount);
+    		this.eas.update(amount);
     	}else {
     		System.out.println("Change: " + change);
-    		this.eas.update(this.sale, (amount - change));
+    		this.eas.update(amount - change);
     	}
-    	
-    	System.out.println("Store balance: " + this.eas.getStoreBalance());
-    	System.out.println("Total VAT: " + sale.getSaleInformation().getTotalVAT());
-    	return 0;
+    	return change;
     }
     
     public void print() {
     	printer.print(this.sale.getReceipt(sale));
+    }
+    
+    public ExternalInventorySystemHandler getEIS() {
+    	return this.eis;
+    }
+    
+    public ExternalAccountingSystemHandler getEAS() {
+    	return this.eas;
     }
 }

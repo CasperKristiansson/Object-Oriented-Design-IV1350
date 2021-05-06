@@ -12,7 +12,6 @@ import se.kth.iv1350.pos.model.*;
 
 public class ControllerTest {
     private Controller contr;
-    private Sale sale;
     
     @BeforeEach
     public void setUp() {
@@ -20,11 +19,6 @@ public class ControllerTest {
         ExternalAccountingSystemHandler eas = new ExternalAccountingSystemHandler();
         ExternalInventorySystemHandler eis = new ExternalInventorySystemHandler();
         contr = new Controller(printer, eas, eis);
-        sale = new Sale();
-    }
-    
-    @AfterEach
-    public void tearDownClass() {
     }
 
     @Test
@@ -35,45 +29,125 @@ public class ControllerTest {
 
     @Test
     public void testEnterItem() {
-        //this.itemDTOs.add(new ItemDTO("Karrékotlett med Ben Skivad ca 1kg ICA", 87.90, 12));
-        contr.startSale();
         System.out.println("enterItem");
+        contr.startSale();
+        
         int itemIdentifier = 1;
         int quantity = 2;
         String expResult = "Karrékotlett med Ben Skivad ca 1kg ICA";
+        SaleDTO saleDTO = contr.enterItem(itemIdentifier, quantity);
+        String result = saleDTO.getItems().get(0).getItemDTO().getItemDescription();
+        try{
+            assertEquals(expResult, result);
+        }catch(AssertionError e){
+            System.out.println("Expected result did not equal result." + 
+                                " Expected result: " + expResult + " Result: " + result);
+            assertEquals(expResult, result);
+        }
+    }
+    
+    public void testEnterNullItem() {
+        System.out.println("enterNullItem");
+        contr.startSale();
+        
+        int itemIdentifier = 8;
+        int quantity = 2;
+        SaleDTO expResult = null;
         SaleDTO result = contr.enterItem(itemIdentifier, quantity);
-        String resultString = result.getNameOfItems().get(0).getItemDTO().getItemDescription();
-        assertEquals(expResult, resultString);
+        try{
+            assertEquals(expResult, result);
+        }catch(AssertionError e){
+            System.out.println("Expected result did not equal result." + 
+                                " Expected result: " + expResult + " Result: " + result);
+            assertEquals(expResult, result);
+        }
     }
 
     @Test
     public void testEndSale() {
         System.out.println("endSale");
-        Controller instance = null;
-        SaleDTO expResult = null;
-        SaleDTO result = instance.endSale();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        contr.startSale();
+        contr.enterItem(1, 2);
+        int expResult = 98;
+        
+        contr.endSale();
+        int resultInteger = contr.getEIS().getItems().get(0).getStoreQuantity();
+        try{
+            assertEquals(expResult, resultInteger);
+        }catch(AssertionError e){
+            System.out.println("Expected result did not equal result." + 
+                                " Expected result: " + expResult + " Result: " + resultInteger);
+            assertEquals(expResult, resultInteger);
+        } 
+        
     }
-
+    
     @Test
     public void testPay() {
         System.out.println("pay");
-        double amount = 0.0;
-        String paymentMethod = "";
-        Controller instance = null;
-        double expResult = 0.0;
-        double result = instance.pay(amount, paymentMethod);
-        assertEquals(expResult, result, 0.0);
-        fail("The test case is a prototype.");
+        contr.startSale();
+        contr.enterItem(1, 2);
+        contr.endSale();
+        
+        double amount = 300;
+        String paymentMethod = "Cash";
+        double expResult = 102;
+        double result = contr.pay(amount, paymentMethod);
+        try{
+            assertEquals(expResult, result);
+        }catch(AssertionError e){
+            System.out.println("Expected result did not equal result." + 
+                                " Expected result: " + expResult + " Result: " + result);
+            assertEquals(expResult, result);
+        }
     }
+    
+    @Test
+    public void testPayLess() {
+        System.out.println("pay less");
+        contr.startSale();
+        contr.enterItem(1, 2);
+        contr.endSale();
+        
+        double amount = 100;
+        String paymentMethod = "Cash";
+        double expResult = -98;
+        double result = contr.pay(amount, paymentMethod);
+        try{
+            assertEquals(expResult, result);
+        }catch(AssertionError e){
+            System.out.println("Expected result did not equal result." + 
+                                " Expected result: " + expResult + " Result: " + result);
+            assertEquals(expResult, result);
+        }
+    }
+    
+    @Test
+    public void testPayEqual() {
+        System.out.println("pay equal");
+        contr.startSale();
+        contr.enterItem(1, 2);
+        contr.endSale();
+        
+        double amount = 198;
+        String paymentMethod = "Cash";
+        double expResult = 0;
+        double result = contr.pay(amount, paymentMethod);
+        try{
+            assertEquals(expResult, result);
+        }catch(AssertionError e){
+            System.out.println("Expected result did not equal result." + 
+                                " Expected result: " + expResult + " Result: " + result);
+            assertEquals(expResult, result);
+        }
+    }
+    
 
     @Test
     public void testPrint() {
         System.out.println("print");
-        Controller instance = null;
-        instance.print();
-        fail("The test case is a prototype.");
+        contr.startSale();
+        contr.print();
     }
     
 }

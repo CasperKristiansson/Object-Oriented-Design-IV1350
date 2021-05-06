@@ -21,7 +21,7 @@ public class Receipt {
         this.totalDiscount = saleInformation.getTotalDiscount();
         this.totalVAT = saleInformation.getTotalVAT();
         this.totalPrice = saleInformation.getTotalPrice();
-        this.nameOfItems = saleInformation.getNameOfItems();
+        this.nameOfItems = saleInformation.getItems();
     }
     
     public java.time.LocalTime getTime() {

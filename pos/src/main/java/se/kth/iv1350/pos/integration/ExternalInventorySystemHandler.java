@@ -12,10 +12,10 @@ public class ExternalInventorySystemHandler {
 	}
 
 	public void addItem() {
-		this.itemDTOs.add(new ItemDTO("Karrékotlett med Ben Skivad ca 1kg ICA", 87.90, 12)); //(Description, price, VAT)
-		this.itemDTOs.add(new ItemDTO("Mozzarella 125g Galbani", 16.6, 2.3));
-		this.itemDTOs.add(new ItemDTO("Korvbröd 10-p 270g Korvbrödsbagarn", 16.6, 2.3));
-		this.itemDTOs.add(new ItemDTO("Apelsinjuice med fruktkött 900ml Innocent", 28.9, 3.9));
+		this.itemDTOs.add(new ItemDTO("Karrékotlett med Ben Skivad ca 1kg ICA", 87, 12)); //(Description, price, VAT)
+		this.itemDTOs.add(new ItemDTO("Mozzarella 125g Galbani", 17, 2));
+		this.itemDTOs.add(new ItemDTO("Korvbröd 10-p 270g Korvbrödsbagarn", 17, 2));
+		this.itemDTOs.add(new ItemDTO("Apelsinjuice med fruktkött 900ml Innocent", 29, 4));
 
 		this.storeItems.add(new Item(1, itemDTOs.get(0), 100));
 		this.storeItems.add(new Item(2, itemDTOs.get(1), 100));
@@ -44,5 +44,9 @@ public class ExternalInventorySystemHandler {
 				}
 			}
 		}
+	}
+	
+	public List<Item> getItems(){
+		return this.storeItems;
 	}
 }
