@@ -67,8 +67,8 @@ public class Controller {
     
     /**
 	 * Handles payment. Updates the accounting system and returns
-	 * @param amount
-	 * @param paymentMethod
+	 * @param amount describes the amount paid
+	 * @param paymentMethod describes what type of payment
 	 * @return change, which returns the amount change.
 	 */
     public double pay(double amount, String paymentMethod) {
