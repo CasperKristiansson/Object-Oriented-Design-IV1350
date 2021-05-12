@@ -1,6 +1,7 @@
 package se.kth.iv1350.pos.view;
 
 import se.kth.iv1350.pos.controller.Controller;
+import se.kth.iv1350.pos.model.*;
 /**
  * The View of the program which runs a runFakeExecution task.
  */
@@ -21,12 +22,20 @@ public class View {
      */
     public void runFakeExecution() {
     	contr.startSale();
-    	
-    	contr.enterItem(8, 102);
-    	contr.enterItem(2, 1);
+    	System.out.println("Försäljning startad.");
+
+    	SaleDTO saleDTO = contr.enterItem(1, 10);
+        System.out.println("Föremål:      " + saleDTO.getItems().get(0).getItemDTO().getItemDescription() + "    " +  saleDTO.getItems().get(0).getItemDTO().getPrice() + " SEK");
+        System.out.println("Running total:                                          " + saleDTO.getTotalPrice() + " SEK");
+    	saleDTO = contr.enterItem(2, 1);
+        System.out.println("Föremål:      " + saleDTO.getItems().get(1).getItemDTO().getItemDescription() + "                   " +  saleDTO.getItems().get(1).getItemDTO().getPrice() + " SEK");
+        System.out.println("Running total:                                          " + saleDTO.getTotalPrice() + " SEK");
+
     	
     	contr.endSale();
-    	contr.pay(100,"Cash");
+        System.out.println("Försäljning avslutad.");
+    	double change = contr.pay(100,"Cash");
+        System.out.println("Växel:              " + change + " SEK");
     	contr.print();
     }
 }

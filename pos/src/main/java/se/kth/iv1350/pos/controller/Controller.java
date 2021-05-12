@@ -49,7 +49,7 @@ public class Controller {
     	if(item.getStoreQuantity() >= quantity) {
     		sale.addItem(item, quantity);
     	}else {
-    		System.out.println("Out of stock!");
+    		return null;
     	}
         
     	return this.sale.getSaleInformation();
@@ -60,7 +60,6 @@ public class Controller {
 	 * @return returns the SaleDTO of the finished sale.
 	 */
     public SaleDTO endSale() {
-    	System.out.println("Försäljning avslutad.");
     	eis.update(this.sale);
     	return this.sale.getSaleInformation();
     }
@@ -74,15 +73,10 @@ public class Controller {
     public double pay(double amount, String paymentMethod) {
     	double change = amount - sale.getSaleInformation().getTotalPrice();
     	
-    	if(change < 0) {
-    		System.out.println("Not enough");
-    	}else if(change == 0){
-    		System.out.println("No change");
-    		this.eas.update(amount);
-    	}else {
-    		System.out.println("Change: " + change);
+    	if(change >= 0){
     		this.eas.update(amount - change);
     	}
+
     	return change;
     }
     
@@ -91,20 +85,5 @@ public class Controller {
      */
     public void print() {
     	printer.print(this.sale.getReceipt(sale));
-    }
-    
-    /**
-     * Returns ExternalInventorySystemHandler.
-     * @return eis, ExternalInventorySystemHandler.
-     */
-    public ExternalInventorySystemHandler getEIS() {
-    	return this.eis;
-    }
-    /**
-     * Returns ExternalAccountingSystemHandler.
-     * @return eas, ExternalAccountingSystemHandler.
-     */
-    public ExternalAccountingSystemHandler getEAS() {
-    	return this.eas;
     }
 }

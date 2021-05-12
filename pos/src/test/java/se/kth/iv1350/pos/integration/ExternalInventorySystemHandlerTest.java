@@ -26,13 +26,7 @@ public class ExternalInventorySystemHandlerTest {
         ItemDTO itemDTO = new ItemDTO("Karrékotlett med Ben Skivad ca 1kg ICA", 87, 12);
         String expResult = itemDTO.getItemDescription();
         String result = eis.getItems().get(0).getItemDTO().getItemDescription();
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
         
     }
 
@@ -45,13 +39,7 @@ public class ExternalInventorySystemHandlerTest {
         String expResult = "Karrékotlett med Ben Skivad ca 1kg ICA";
         Item item = eis.search(itemIdentifier);
         String result = item.getItemDTO().getItemDescription();
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }
     
     @Test
@@ -62,13 +50,7 @@ public class ExternalInventorySystemHandlerTest {
 
         Item expResult = null;
         Item result = eis.search(itemIdentifier);
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }
 
     @Test
@@ -81,12 +63,6 @@ public class ExternalInventorySystemHandlerTest {
         eis.update(sale);
         int expResult = 99;
         int result = sale.getItems().get(0).getStoreQuantity();
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }   
 }

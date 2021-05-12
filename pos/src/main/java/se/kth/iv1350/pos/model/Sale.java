@@ -23,7 +23,6 @@ public class Sale {
     	this.time = LocalTime.now();
     	this.items = new ArrayList<>();
     	this.saleInformation = new SaleDTO(time, "Gittans Livs", 0,  0, 0, null);
-    	this.receipt = new Receipt(this.saleInformation);
     }
 
     /**
@@ -58,8 +57,6 @@ public class Sale {
     public void addItem(Item item, int quantity) {
     	this.saleInformation.updateTotalVAT(item.getItemDTO().getVAT(), quantity);
     	this.saleInformation.updateTotalPrice(item.getItemDTO().getPrice(), quantity, (item.getItemDTO().getVAT()));
-    	System.out.println("Running total: " + this.saleInformation.getTotalPrice());
-    	System.out.println(item.getItemDTO().getItemDescription() + ", Price: " + item.getItemDTO().getPrice());
         isDuplicateItem(item, quantity);
     }
     /**
@@ -88,6 +85,7 @@ public class Sale {
 	 * @return recepit the receipt of the sale.
 	 */
     public Receipt getReceipt(Sale sale) {
+        this.receipt = new Receipt(sale.getSaleInformation());
     	return receipt;
     }
 }

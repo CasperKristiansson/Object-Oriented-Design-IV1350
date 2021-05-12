@@ -24,13 +24,7 @@ public class SaleTest {
         String expResult = "Karrékotlett med Ben Skivad ca 1kg ICA";
         sale.addItem(item, quantity);
         String result = sale.getItems().get(0).getItemDTO().getItemDescription();
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }
 
     @Test
@@ -45,13 +39,7 @@ public class SaleTest {
         
         int expResult = 2;
         int result = sale.getCustomerItemsQuantity().get(0);
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }
     
     @Test
@@ -66,13 +54,7 @@ public class SaleTest {
         
         int expResult = 1;
         int result = sale.getCustomerItemsQuantity().get(0);
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }
     
 }

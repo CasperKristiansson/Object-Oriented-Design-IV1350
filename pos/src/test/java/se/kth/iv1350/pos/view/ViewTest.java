@@ -29,22 +29,6 @@ public class ViewTest {
         Controller contr = new Controller(printer,eas,eis);
         view = new View(contr);
     }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     @Test
     public void testRunFakeExecution() {

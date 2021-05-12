@@ -36,12 +36,6 @@ public class ExternalAccountingSystemHandlerTest {
         eas.update(100);
         double expResult = 200;
         double result = eas.getStoreBalance();
-        try{
-            assertEquals(expResult, result);
-        }catch(AssertionError e){
-            System.out.println("Expected result did not equal result." + 
-                                " Expected result: " + expResult + " Result: " + result);
-            assertEquals(expResult, result);
-        }
+        assertEquals(expResult, result, "Expected result did not equal result");
     }  
 }
