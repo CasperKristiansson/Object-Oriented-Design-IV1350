@@ -51,7 +51,6 @@ public class Controller {
     	}else {
     		return null;
     	}
-        
     	return this.sale.getSaleInformation();
     }
     
